@@ -116,7 +116,7 @@ const TZClocks = () => {
                 {formatTime(selectedDT, selectedTZ)}
               </div>
               <div
-                className="text-xl sm:text-2xl font-medium text-black text-opacity-80 drop-shadow-sm pointer"
+                className="text-xl sm:text-2xl font-medium text-black text-opacity-80 drop-shadow-sm cursor-pointer"
                 onClick={() =>
                   document.getElementById("maindatetime").showPicker()
                 }
@@ -141,10 +141,10 @@ const TZClocks = () => {
         ))}
 
       <button
-        className="bg-pink-400 hover:bg-pink-500 w-20 h-20 p-2 center font-bold fixed bottom-4 right-4 rounded-full shadow-sm"
+        className="select-none focus:border-transparent focus:outline-none focus:ring-0 bg-pink-400 hover:bg-pink-500 w-20 h-20 p-2 center font-bold fixed bottom-4 right-4 rounded-full shadow-sm"
         onClick={() => addClock()}
       >
-        <div className="text-6xl font-normal text-white drop-shadow-sm leading-0 -mt-2">
+        <div className="select-none text-6xl font-normal text-white drop-shadow-sm leading-0 -mt-2">
           +
         </div>
       </button>
