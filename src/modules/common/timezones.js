@@ -1294,7 +1294,7 @@ export const uniqueTimeZones = () => {
     if (timeZoneLength > 1 && uniqueTimeZones[key][0].displayName !== "") {
       return uniqueTimeZones[key][0];
     }
-    return;
+    return false;
   });
   let commonUniqueTimeZones = commonUniqueTimeZonesKeys.map(
     (key) => uniqueTimeZones[key][0]
