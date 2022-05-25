@@ -21,10 +21,13 @@ const TZClocks = () => {
   const [mainDateTime, setMainDateTime] = useState(() => initiateDateTime());
   const [selectedTZ, setSelectedTZ] = useState("America/New_York");
   const [selectedDT, setSelectedDT] = useState(() => initiateDateTime());
-  const [clocks, setClocks] = useState([]);
+  const [clocks, setClocks] = useState(
+    JSON.parse(localStorage.getItem("clocks"))
+  );
   const [timeZoneOptions, setTimeZoneOptions] = useState(uniqueTimeZones());
   const [showAllTZ, setShowAllTZ] = useState(false);
 
+  console.log(localStorage.getItem("clocks"));
   const addClock = () => {
     setClocks((clocks) => [
       ...clocks,
@@ -35,12 +38,23 @@ const TZClocks = () => {
     ]);
   };
 
+  const removeClock = (id) => {
+    var filteredList = clocks.filter((clock) => {
+      return clock.id != id;
+    });
+    setClocks(filteredList);
+  };
+
   const updateClockTZ = (id, timeZone) => {
     let tempClocks = [...clocks];
     let objIndex = tempClocks.findIndex((clock) => clock.id === id);
     tempClocks[objIndex].timeZone = timeZone;
     setClocks(tempClocks);
   };
+
+  useEffect(() => {
+    localStorage.setItem("clocks", JSON.stringify(clocks));
+  }, [clocks]);
 
   useEffect(() => {
     setMainDateTime(
@@ -137,6 +151,7 @@ const TZClocks = () => {
             key={clock.id}
             clock={clock}
             updateClockTZ={updateClockTZ}
+            removeClock={removeClock}
           />
         ))}
 

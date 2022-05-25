@@ -3,7 +3,7 @@ import { sortedTimeZones, uniqueTimeZones } from "../../common/timezones.js";
 import { formatTime, formatDate } from "../../common/helpers.js";
 import { motion, AnimatePresence } from "framer-motion";
 
-const TZCard = ({ id, timeZone, dateTime, updateClockTZ, clock }) => {
+const TZCard = ({ id, timeZone, dateTime, updateClockTZ, removeClock }) => {
   const [timeZoneOptions, setTimeZoneOptions] = useState(uniqueTimeZones());
   const [showAllTZ, setShowAllTZ] = useState(false);
 
@@ -42,7 +42,7 @@ const TZCard = ({ id, timeZone, dateTime, updateClockTZ, clock }) => {
                 </select>
               </div>
 
-              <div class="flex items-center mb-4">
+              <div className="flex items-center mb-4">
                 <input
                   type="checkbox"
                   id={"showtz" + id}
@@ -69,6 +69,12 @@ const TZCard = ({ id, timeZone, dateTime, updateClockTZ, clock }) => {
             </div>
           </div>
           {/* <div className="w-10 bg-gradient-to-b from-white/40 to-white/10"></div> */}
+        </div>
+        <div
+          className="fixed top-0 right-2 font-light"
+          onClick={() => removeClock(id)}
+        >
+          x
         </div>
       </motion.div>
     </AnimatePresence>
