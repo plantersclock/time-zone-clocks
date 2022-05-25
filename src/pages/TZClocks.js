@@ -55,13 +55,13 @@ const TZClocks = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 w-full gap-2">
-      <div className="w-full font-bold backdrop-blur-sm bg-gradient-to-bl from-white/5 to-white/30 border border-green-200 shadow-sm center rounded">
+      <div className="w-full font-bold backdrop-blur-sm bg-gradient-to-tl from-green-50/40 to-green-50/60 border border-green-200 shadow-sm center rounded">
         <div className="flex w-full">
           <div className="p-5 w-full">
             <div className="flex-col">
               <div>
                 <select
-                  className="w-full m-0 p-0 bg-transparent"
+                  className="w-full m-0 p-0 bg-transparent font-medium text-gray-900/90"
                   name="mainTimeZoneSelect"
                   id="mainTimeZoneSelector"
                   value={selectedTZ}
