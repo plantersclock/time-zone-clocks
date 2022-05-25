@@ -17,17 +17,21 @@ const initiateDateTime = () => {
   return moment(date)._d;
 };
 
+const initiateClocks = () => {
+  if (!localStorage.getItem("clocks")) return [];
+  return JSON.parse(localStorage.getItem("clocks"));
+};
+
 const TZClocks = () => {
   const [mainDateTime, setMainDateTime] = useState(() => initiateDateTime());
   const [selectedTZ, setSelectedTZ] = useState("America/New_York");
   const [selectedDT, setSelectedDT] = useState(() => initiateDateTime());
-  const [clocks, setClocks] = useState(
-    JSON.parse(localStorage.getItem("clocks"))
-  );
+  const [clocks, setClocks] = useState(() => initiateClocks());
   const [timeZoneOptions, setTimeZoneOptions] = useState(uniqueTimeZones());
   const [showAllTZ, setShowAllTZ] = useState(false);
 
-  console.log(localStorage.getItem("clocks"));
+  // console.log(localStorage.getItem("clocks"));
+
   const addClock = () => {
     setClocks((clocks) => [
       ...clocks,
