@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Reorder } from "framer-motion";
 import TZCard from "../modules/timezonecards/components/TZCard.js";
-import {
-  formatDate,
-  formatTime,
-  getCurrentDateTime,
-} from "../modules/common/helpers.js";
+import { formatDate, formatTime } from "../modules/common/helpers.js";
+import { v4 as uuid } from "uuid";
 import {
   sortedTimeZones,
   uniqueTimeZones,
@@ -32,6 +30,7 @@ const TZClocks = () => {
     setClocks((clocks) => [
       ...clocks,
       {
+        id: uuid(),
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
     ]);
@@ -39,7 +38,8 @@ const TZClocks = () => {
 
   const updateClockTZ = (id, timeZone) => {
     let tempClocks = [...clocks];
-    tempClocks[id].timeZone = timeZone;
+    let objIndex = tempClocks.findIndex((clock) => clock.id == id);
+    tempClocks[objIndex].timeZone = timeZone;
     setClocks(tempClocks);
   };
 
@@ -55,8 +55,8 @@ const TZClocks = () => {
   }, [showAllTZ]);
 
   return (
-    <div className="flex w-full flex-wrap">
-      <div className="m-2 font-bold backdrop-blur-sm bg-gradient-to-bl from-white/5 to-white/30 border border-green-200 shadow-sm center rounded w-1/3">
+    <div className="grid grid-cols-3 w-full gap-2">
+      <div className="w-full font-bold backdrop-blur-sm bg-gradient-to-bl from-white/5 to-white/30 border border-green-200 shadow-sm center rounded">
         <div className="flex w-full">
           <div className="p-5 w-full">
             <div className="flex-col">
@@ -76,12 +76,12 @@ const TZClocks = () => {
                       </option>
                     ))}
                 </select>
-                <div class="flex items-center mb-4">
+                <div className="flex items-center mb-4">
                   <input
                     type="checkbox"
                     id="showtz"
                     name="showtz"
-                    className="ml-1 w-4 h-4 text-green-300 bg-pink-100 accent-green-200 border-gray-300 rounded focus:ring-green-200 dark:focus:ring-green-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="ml-1 w-4 h-4 text-green-300 bg-green-100 accent-green-200 border-green-300 rounded focus:ring-green-200 dark:focus:ring-green-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     checked={showAllTZ}
                     onChange={() => setShowAllTZ(!showAllTZ)}
                   ></input>
@@ -116,7 +116,12 @@ const TZClocks = () => {
               >
                 {formatTime(selectedDT, selectedTZ)}
               </div>
-              <div className="text-2xl font-medium text-black text-opacity-80 drop-shadow-sm">
+              <div
+                className="text-2xl font-medium text-black text-opacity-80 drop-shadow-sm pointer"
+                onClick={() =>
+                  document.getElementById("maindatetime").showPicker()
+                }
+              >
                 {formatDate(selectedDT, selectedTZ)}
               </div>
             </div>
@@ -125,21 +130,24 @@ const TZClocks = () => {
       </div>
 
       {clocks &&
-        clocks.map((clock, index) => (
+        clocks.map((clock) => (
           <TZCard
-            id={index}
+            id={clock.id}
             dateTime={mainDateTime}
             timeZone={clock.timeZone}
-            key={index}
+            key={clock.id}
+            clock={clock}
             updateClockTZ={updateClockTZ}
           />
         ))}
 
       <button
-        className="bg-gray-100 rounded m-2 p-2 center font-bold hover:bg-gray-200 h-40"
+        className="bg-pink-400 hover:bg-pink-500 w-20 h-20 p-2 center font-bold fixed bottom-4 right-4 rounded-full shadow-sm"
         onClick={() => addClock()}
       >
-        Add Clock
+        <div className="text-6xl font-normal text-white drop-shadow-sm leading-0 -mt-2">
+          +
+        </div>
       </button>
       {/* <button onClick={() => updateClockTZ()}>TZ Update</button> */}
     </div>
