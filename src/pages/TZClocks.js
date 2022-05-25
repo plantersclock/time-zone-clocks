@@ -40,7 +40,7 @@ const TZClocks = () => {
 
   const removeClock = (id) => {
     var filteredList = clocks.filter((clock) => {
-      return clock.id != id;
+      return clock.id !== id;
     });
     setClocks(filteredList);
   };
