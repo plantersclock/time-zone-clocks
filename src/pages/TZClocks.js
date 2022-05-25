@@ -19,6 +19,7 @@ const initiateDateTime = () => {
 
 const initiateClocks = () => {
   if (!localStorage.getItem("clocks")) return [];
+  if (localStorage.getItem("clocks") === "null") return [];
   return JSON.parse(localStorage.getItem("clocks"));
 };
 
