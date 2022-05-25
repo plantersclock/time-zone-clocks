@@ -54,7 +54,7 @@ const TZClocks = () => {
   }, [showAllTZ]);
 
   return (
-    <div className="grid grid-cols-3 w-full gap-2">
+    <div className="grid grid-cols-1 sm:grid-cols-3 w-full gap-2">
       <div className="w-full font-bold backdrop-blur-sm bg-gradient-to-bl from-white/5 to-white/30 border border-green-200 shadow-sm center rounded">
         <div className="flex w-full">
           <div className="p-5 w-full">
@@ -108,7 +108,7 @@ const TZClocks = () => {
             </div>
             <div className="flex items-end justify-between">
               <div
-                className="text-8xl font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer"
+                className="text-5xl sm:text-8xl font-light sm:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer"
                 onClick={() =>
                   document.getElementById("maindatetime").showPicker()
                 }
@@ -116,7 +116,7 @@ const TZClocks = () => {
                 {formatTime(selectedDT, selectedTZ)}
               </div>
               <div
-                className="text-2xl font-medium text-black text-opacity-80 drop-shadow-sm pointer"
+                className="text-xl sm:text-2xl font-medium text-black text-opacity-80 drop-shadow-sm pointer"
                 onClick={() =>
                   document.getElementById("maindatetime").showPicker()
                 }
