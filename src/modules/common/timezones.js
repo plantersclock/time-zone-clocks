@@ -1291,7 +1291,7 @@ export const uniqueTimeZones = () => {
   const uniqueTimeZoneKeys = Object.keys(uniqueTimeZones);
   const commonUniqueTimeZonesKeys = uniqueTimeZoneKeys.filter((key) => {
     let timeZoneLength = uniqueTimeZones[key].length;
-    if (timeZoneLength > 1 && uniqueTimeZones[key][0].displayName != "") {
+    if (timeZoneLength > 1 && uniqueTimeZones[key][0].displayName !== "") {
       return uniqueTimeZones[key][0];
     }
     return;
@@ -1306,7 +1306,7 @@ export const uniqueTimeZones = () => {
 
   const currentTimeZone = timeZones.find(
     (timeZone) =>
-      timeZone.timeZoneID == Intl.DateTimeFormat().resolvedOptions().timeZone
+      timeZone.timeZoneID === Intl.DateTimeFormat().resolvedOptions().timeZone
   );
 
   commonUniqueTimeZones.unshift(currentTimeZone);

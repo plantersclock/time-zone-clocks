@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Reorder } from "framer-motion";
 import TZCard from "../modules/timezonecards/components/TZCard.js";
 import { formatDate, formatTime } from "../modules/common/helpers.js";
 import { v4 as uuid } from "uuid";
@@ -38,7 +37,7 @@ const TZClocks = () => {
 
   const updateClockTZ = (id, timeZone) => {
     let tempClocks = [...clocks];
-    let objIndex = tempClocks.findIndex((clock) => clock.id == id);
+    let objIndex = tempClocks.findIndex((clock) => clock.id === id);
     tempClocks[objIndex].timeZone = timeZone;
     setClocks(tempClocks);
   };
