@@ -45,15 +45,15 @@ const TZCard = ({ id, timeZone, dateTime, updateClockTZ, clock }) => {
               <div class="flex items-center mb-4">
                 <input
                   type="checkbox"
-                  id="showtz"
-                  name="showtz"
-                  className="ml-1 w-4 h-4 text-pink-600 bg-pink-100 accent-pink-500 border-gray-300 rounded focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  id={"showtz" + id}
+                  name={"showtz" + id}
+                  className="ml-1 w-4 h-4 text-pink-600 bg-pink-100 accent-pink-500 border-gray-300 rounded focus:ring-pink-500 focus:ring-2"
                   checked={showAllTZ}
                   onChange={() => setShowAllTZ(!showAllTZ)}
                 ></input>
                 <label
-                  htmlFor="showtz"
-                  className="ml-2 text-sm font-medium text-gray-900 text-opacity-90 dark:text-gray-300 drop-shadow-sm"
+                  htmlFor={"showtz" + id}
+                  className="ml-2 text-sm font-medium text-gray-900 text-opacity-90 drop-shadow-sm"
                 >
                   Show All
                 </label>

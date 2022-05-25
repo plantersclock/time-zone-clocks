@@ -80,13 +80,13 @@ const TZClocks = () => {
                     type="checkbox"
                     id="showtz"
                     name="showtz"
-                    className="ml-1 w-4 h-4 text-green-300 bg-green-100 accent-green-200 border-green-300 rounded focus:ring-green-200 dark:focus:ring-green-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="ml-1 w-4 h-4 text-green-300 bg-green-100 accent-green-200 border-green-300 rounded focus:ring-green-200 focus:ring-2"
                     checked={showAllTZ}
                     onChange={() => setShowAllTZ(!showAllTZ)}
                   ></input>
                   <label
                     htmlFor="showtz"
-                    className="ml-2 text-sm font-medium text-gray-900 text-opacity-90 dark:text-gray-300 drop-shadow-sm"
+                    className="ml-2 text-sm font-medium text-gray-900 text-opacity-90 drop-shadow-sm"
                   >
                     Show All
                   </label>
