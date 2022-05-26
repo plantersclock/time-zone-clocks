@@ -89,7 +89,7 @@ const TZClocks = () => {
   }, [showAllTZ]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 w-full gap-2">
+    <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 w-full gap-2">
       <div className="w-full font-bold backdrop-blur-sm bg-gradient-to-tl from-green-50/40 to-green-50/60 border border-green-200 shadow-sm center rounded">
         <div className="flex w-full">
           <div className="p-5 w-full">
@@ -129,7 +129,7 @@ const TZClocks = () => {
               </div>
               {/* <div className="text-2xl">{formatTime(mainDateTime, selectedTZ)}</div> */}
             </div>
-            <div className="flex items-end justify-between">
+            {/* <div className="flex items-end justify-between">
               <div
                 className="text-4xl sm:text-5xl lg:text-6xl 2xl:text-8xl font-light sm:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer"
                 onClick={() => {
@@ -154,14 +154,14 @@ const TZClocks = () => {
                   .tz(selectedD + " " + selectedT, selectedTZ)
                   .format("MM/DD/YYYY")}
               </div>
-            </div>
-            <div className="flex justify-between">
+            </div> */}
+            <div className="flex justify-between items-end">
               <div>
                 <input
                   id="maintime"
                   type="time"
                   name="maintime"
-                  className="bg-transparent text-gray-800 text-2xl font-bold"
+                  className="bg-transparent text-4xl sm:text-5xl lg:text-6xl font-light lg:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer "
                   value={selectedT}
                   onChange={(e) => {
                     setSelectedT(e.target.value);
@@ -174,7 +174,7 @@ const TZClocks = () => {
                   id="maindate"
                   type="date"
                   name="maindate"
-                  className="bg-transparent text-gray-800 text-2xl font-bold"
+                  className="bg-transparent text-xl sm:text-2xl font-medium text-black text-opacity-80 drop-shadow-sm cursor-pointer"
                   value={selectedD}
                   onChange={(e) => setSelectedD(e.target.value)}
                 ></input>
