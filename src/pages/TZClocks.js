@@ -18,7 +18,6 @@ const initiateTime = () => {
   let time = moment
     .tz(new Date(), Intl.DateTimeFormat().resolvedOptions().timeZone)
     .format("HH:mm");
-  console.log(time);
 
   return time;
 };
@@ -164,7 +163,6 @@ const TZClocks = () => {
                 value={selectedT}
                 onChange={(e) => {
                   setSelectedT(e.target.value);
-                  console.log(e.target.value);
                 }}
               ></input>
 
