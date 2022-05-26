@@ -1,0 +1,5 @@
+.WavyBackground {
+  background-color: #e5e5f7;
+opacity: 0.8;
+background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 13px ), repeating-linear-gradient( #f745df47, #f46ce2 );
+}

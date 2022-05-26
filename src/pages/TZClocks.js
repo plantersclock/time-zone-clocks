@@ -132,7 +132,7 @@ const TZClocks = () => {
                   document.getElementById("maindatetime").showPicker()
                 }
               >
-                {formatTime(selectedDT, selectedTZ)}
+                {formatTime(mainDateTime, selectedTZ)}
               </div>
               <div
                 className="text-xl sm:text-2xl font-medium text-black text-opacity-80 drop-shadow-sm cursor-pointer"
@@ -140,7 +140,7 @@ const TZClocks = () => {
                   document.getElementById("maindatetime").showPicker()
                 }
               >
-                {formatDate(selectedDT, selectedTZ)}
+                {formatDate(mainDateTime, selectedTZ)}
               </div>
             </div>
           </div>
