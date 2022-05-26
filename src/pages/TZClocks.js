@@ -119,6 +119,7 @@ const TZClocks = () => {
               <div
                 className="text-5xl lg:text-6xl 2xl:text-8xl font-light sm:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer"
                 onClick={() => {
+                  document.getElementById("maindatetime").focus();
                   document.getElementById("maindatetime").click();
                   document.getElementById("maindatetime").showPicker();
                 }}
