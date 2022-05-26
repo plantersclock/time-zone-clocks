@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import TZCard from "../modules/timezonecards/components/TZCard.js";
-import { formatDate, formatTime } from "../modules/common/helpers.js";
 import { v4 as uuid } from "uuid";
 import {
   sortedTimeZones,
@@ -8,13 +7,20 @@ import {
 } from "../modules/common/timezones.js";
 import moment from "moment-timezone";
 
-const initiateDateTime = () => {
-  const date = new Date();
+const initiateDate = () => {
+  let date = moment
+    .tz(new Date(), Intl.DateTimeFormat().resolvedOptions().timeZone)
+    .format("yyyy-MM-DD");
+  return date;
+};
 
-  // return moment
-  //   .tz(date, Intl.DateTimeFormat().resolvedOptions().timeZone)
-  //   .format("MM/DD/YYYY h:mm a Z");
-  return moment(date)._d;
+const initiateTime = () => {
+  let time = moment
+    .tz(new Date(), Intl.DateTimeFormat().resolvedOptions().timeZone)
+    .format("HH:mm");
+  console.log(time);
+
+  return time;
 };
 
 const initiateClocks = () => {
@@ -24,16 +30,16 @@ const initiateClocks = () => {
 };
 
 const TZClocks = () => {
-  const [mainDateTime, setMainDateTime] = useState(() => initiateDateTime());
-  const [selectedTZ, setSelectedTZ] = useState("America/New_York");
-  const [selectedDT, setSelectedDT] = useState(() => initiateDateTime());
+  const [mainDateTime, setMainDateTime] = useState();
+  const [selectedTZ, setSelectedTZ] = useState(
+    Intl.DateTimeFormat().resolvedOptions().timeZone
+  );
+
+  const [selectedT, setSelectedT] = useState(() => initiateTime());
+  const [selectedD, setSelectedD] = useState(() => initiateDate());
   const [clocks, setClocks] = useState(() => initiateClocks());
   const [timeZoneOptions, setTimeZoneOptions] = useState(uniqueTimeZones());
   const [showAllTZ, setShowAllTZ] = useState(false);
-
-  // console.log(localStorage.getItem("clocks"));
-
-  console.log(initiateDateTime());
 
   const addClock = () => {
     setClocks((clocks) => [
@@ -64,10 +70,18 @@ const TZClocks = () => {
   }, [clocks]);
 
   useEffect(() => {
-    setMainDateTime(
-      moment.tz(selectedDT, selectedTZ).format("YYYY/MM/DD h:mm a Z")
-    );
-  }, [selectedDT, selectedTZ]);
+    let DT = moment(selectedD + " " + selectedT, "DD/MM/YYYY HH:mm");
+    setMainDateTime(moment.tz(DT._i, selectedTZ).format("YYYY/MM/DD h:mm a Z"));
+  }, [selectedD, selectedT, selectedTZ]);
+
+  // useEffect(() => {
+  //   console.log(
+  //     moment.tz(selectedDT, selectedTZ).format("YYYY/MM/DD h:mm a Z")
+  //   );
+  //   setMainDateTime(
+  //     moment.tz(selectedDT, selectedTZ).format("YYYY/MM/DD h:mm a Z")
+  //   );
+  // }, [selectedDT, selectedTZ]);
 
   useEffect(() => {
     if (!showAllTZ) setTimeZoneOptions(uniqueTimeZones());
@@ -117,35 +131,54 @@ const TZClocks = () => {
             </div>
             <div className="flex items-end justify-between">
               <div
-                className="text-5xl lg:text-6xl 2xl:text-8xl font-light sm:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer"
+                className="text-4xl sm:text-5xl lg:text-6xl 2xl:text-8xl font-light sm:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer"
                 onClick={() => {
-                  document.getElementById("maindatetime").focus();
-                  document.getElementById("maindatetime").click();
-                  document.getElementById("maindatetime").showPicker();
+                  document.getElementById("maintime").focus();
+                  document.getElementById("maintime").click();
+                  document.getElementById("maintime").showPicker();
                 }}
               >
-                {formatTime(mainDateTime, selectedTZ)}
+                {moment
+                  .tz(selectedD + " " + selectedT, selectedTZ)
+                  .format("hh:mm a")}
               </div>
               <div
                 className="text-xl sm:text-2xl font-medium text-black text-opacity-80 drop-shadow-sm cursor-pointer"
-                onClick={() =>
-                  document.getElementById("maindatetime").showPicker()
-                }
+                onClick={() => {
+                  document.getElementById("maindate").focus();
+                  document.getElementById("maindate").click();
+                  document.getElementById("maindate").showPicker();
+                }}
               >
-                {formatDate(mainDateTime, selectedTZ)}
+                {moment
+                  .tz(selectedD + " " + selectedT, selectedTZ)
+                  .format("MM/DD/YYYY")}
               </div>
             </div>
-            <div>
-              <input
-                id="maindatetime"
-                type="datetime-local"
-                name="maindatetime"
-                className="bg-transparent text-gray-800 text-2xl font-bold"
-                value={moment
-                  .tz(selectedDT, selectedTZ)
-                  .format("yyyy-MM-DDTHH:mm")}
-                onChange={(e) => setSelectedDT(e.target.value)}
-              ></input>
+            <div className="flex justify-between">
+              <div>
+                <input
+                  id="maintime"
+                  type="time"
+                  name="maintime"
+                  className="bg-transparent text-gray-800 text-2xl font-bold"
+                  value={selectedT}
+                  onChange={(e) => {
+                    setSelectedT(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                ></input>
+              </div>
+              <div>
+                <input
+                  id="maindate"
+                  type="date"
+                  name="maindate"
+                  className="bg-transparent text-gray-800 text-2xl font-bold"
+                  value={selectedD}
+                  onChange={(e) => setSelectedD(e.target.value)}
+                ></input>
+              </div>
             </div>
           </div>
         </div>

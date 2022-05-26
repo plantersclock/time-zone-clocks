@@ -9,10 +9,8 @@ export const getCurrentDateTime = () => {
 export const formatTime = (dateTime, timeZone) => {
   // const convertedDateTime = convertDateTime(dateTime, timeZone);
   // return moment.tz(convertedDateTime, timeZone).format("MM/DD/YYYY h:mm a");
-  console.log("time");
-  console.log(dateTime);
-  console.log(timeZone);
-  console.log(moment(dateTime).tz(timeZone, false).format("h:mm a"));
+  console.log("FormattingTime");
+
   return moment(dateTime).tz(timeZone, false).format("h:mm a");
 };
 
