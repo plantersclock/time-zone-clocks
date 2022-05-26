@@ -155,30 +155,27 @@ const TZClocks = () => {
                   .format("MM/DD/YYYY")}
               </div>
             </div> */}
-            <div className="flex justify-between items-end">
-              <div>
-                <input
-                  id="maintime"
-                  type="time"
-                  name="maintime"
-                  className="bg-transparent text-4xl sm:text-5xl lg:text-6xl font-light lg:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer "
-                  value={selectedT}
-                  onChange={(e) => {
-                    setSelectedT(e.target.value);
-                    console.log(e.target.value);
-                  }}
-                ></input>
-              </div>
-              <div>
-                <input
-                  id="maindate"
-                  type="date"
-                  name="maindate"
-                  className="bg-transparent text-xl sm:text-2xl font-medium text-black text-opacity-80 drop-shadow-sm cursor-pointer"
-                  value={selectedD}
-                  onChange={(e) => setSelectedD(e.target.value)}
-                ></input>
-              </div>
+            <div className="flex justify-between items-end w-full">
+              <input
+                id="maintime"
+                type="time"
+                name="maintime"
+                className="bg-transparent text-4xl sm:text-5xl lg:text-6xl font-light lg:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer"
+                value={selectedT}
+                onChange={(e) => {
+                  setSelectedT(e.target.value);
+                  console.log(e.target.value);
+                }}
+              ></input>
+
+              <input
+                id="maindate"
+                type="date"
+                name="maindate"
+                className="bg-transparent text-xl sm:text-2xl font-medium text-black text-opacity-80 drop-shadow-sm cursor-pointer"
+                value={selectedD}
+                onChange={(e) => setSelectedD(e.target.value)}
+              ></input>
             </div>
           </div>
         </div>
