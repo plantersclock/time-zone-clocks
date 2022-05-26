@@ -60,7 +60,7 @@ const TZCard = ({ id, timeZone, dateTime, updateClockTZ, removeClock }) => {
               </div>
             </div>
             <div className="flex items-end justify-between">
-              <div className="text-5xl sm:text-8xl font-light sm:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer">
+              <div className="text-5xl lg:text-6xl 2xl:text-8xl font-light sm:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer">
                 {formatTime(dateTime, timeZone)}
               </div>
               <div className="text-xl sm:text-2xl font-medium text-black text-opacity-80 drop-shadow-sm">

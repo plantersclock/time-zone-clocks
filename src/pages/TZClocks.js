@@ -33,6 +33,8 @@ const TZClocks = () => {
 
   // console.log(localStorage.getItem("clocks"));
 
+  console.log(initiateDateTime());
+
   const addClock = () => {
     setClocks((clocks) => [
       ...clocks,
@@ -63,7 +65,7 @@ const TZClocks = () => {
 
   useEffect(() => {
     setMainDateTime(
-      moment.tz(selectedDT, selectedTZ).format("YYYY-MM-DD h:mm a Z")
+      moment.tz(selectedDT, selectedTZ).format("YYYY/MM/DD h:mm a Z")
     );
   }, [selectedDT, selectedTZ]);
 
@@ -112,22 +114,10 @@ const TZClocks = () => {
                 </div>
               </div>
               {/* <div className="text-2xl">{formatTime(mainDateTime, selectedTZ)}</div> */}
-              <div>
-                <input
-                  id="maindatetime"
-                  type="datetime-local"
-                  name="maindatetime"
-                  className="bg-transparent text-gray-800 text-2xl font-bold hidden"
-                  value={moment
-                    .tz(selectedDT, selectedTZ)
-                    .format("yyyy-MM-DDTHH:mm")}
-                  onChange={(e) => setSelectedDT(e.target.value)}
-                ></input>
-              </div>
             </div>
             <div className="flex items-end justify-between">
               <div
-                className="text-5xl sm:text-8xl font-light sm:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer"
+                className="text-5xl lg:text-6xl 2xl:text-8xl font-light sm:font-extralight text-black text-opacity-80 drop-shadow-sm cursor-pointer"
                 onClick={() =>
                   document.getElementById("maindatetime").showPicker()
                 }
@@ -142,6 +132,18 @@ const TZClocks = () => {
               >
                 {formatDate(mainDateTime, selectedTZ)}
               </div>
+            </div>
+            <div>
+              <input
+                id="maindatetime"
+                type="datetime-local"
+                name="maindatetime"
+                className="bg-transparent text-gray-800 text-2xl font-bold"
+                value={moment
+                  .tz(selectedDT, selectedTZ)
+                  .format("yyyy-MM-DDTHH:mm")}
+                onChange={(e) => setSelectedDT(e.target.value)}
+              ></input>
             </div>
           </div>
         </div>
